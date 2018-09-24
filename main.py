@@ -5,6 +5,7 @@ import helper
 import warnings
 from distutils.version import LooseVersion
 import project_tests as tests
+import time
 
 
 # Check TensorFlow Version
@@ -125,7 +126,7 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
     y = tf.reshape(correct_label, (-1, num_classes))
 
     cross_entropy_loss = tf.reduce_mean(
-        tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits, labels=y))
+        tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=y))
 
     non_vgg_vars = [x for x in tf.trainable_variables() if 'VGG16' not in x.name]
 
@@ -156,33 +157,60 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
     :param learning_rate: TF Placeholder for learning rate
     """
     # TODO: Implement function
+    
+    totalstarttime = time.clock()
+    
     sess.run(tf.global_variables_initializer())
 
     for i in range(epochs):
+        training_loss = 0
+        training_samples = 0
+        print('running epochs:', i)
+        
+        starttime = time.clock()
+        
         for image, label in get_batches_fn(batch_size):
-
+            training_samples += len(image)
+            
             loss,_ = sess.run([cross_entropy_loss, train_op],
                               feed_dict={input_image: image,
                                          correct_label: label,
                                          keep_prob: 0.8})
+            training_loss += loss
 
+        # calc training loss
+        training_loss /= training_samples
+        endtime = time.clock()
+        training_time = endtime - starttime
+        print('epoch {} execution took {} sec,'.format(i, training_time) +
+              ' with training loss: {}'.format(training_loss))
+
+    totalendtime = time.clock()
+    totaltime = totalendtime - totalstarttime
+    print('total execution took {} seconds'.format(totaltime))
+            
 tests.test_train_nn(train_nn)
 
 
 def run():
     num_classes = 2
     image_shape = (160, 576)
-    data_dir = './data'
+#     data_dir = './data'
+    data_dir = '/data'
     runs_dir = './runs'
+    
+    print('testing for kitti dataset')
     tests.test_for_kitti_dataset(data_dir)
 
     # Download pretrained vgg model
+    print('maybe download pretrained vgg')
     helper.maybe_download_pretrained_vgg(data_dir)
 
     # OPTIONAL: Train and Inference on the cityscapes dataset instead of the Kitti dataset.
     # You'll need a GPU with at least 10 teraFLOPS to train on.
     #  https://www.cityscapes-dataset.com/
 
+    print('init run params')
     epochs = 25
     batch_size = 1
     learning_rate = tf.constant(0.0001)
@@ -200,10 +228,13 @@ def run():
         shape = [None, image_shape[0], image_shape[1], 3]
         correct_label = tf.placeholder(tf.float32, [None, image_shape[0], image_shape[1], num_classes])
 
+        print('load_vgg()...')
         input_image, keep_prob, layer3_out, layer4_out, layer7_out = load_vgg(sess, vgg_path)
 
+        print('layers()...')
         final_output = layers(layer3_out, layer4_out, layer7_out, num_classes)
 
+        print('optimize()...')
         logits, train_op, loss = optimize(final_output, correct_label, learning_rate, num_classes)
 
         # TODO: Train NN using the train_nn function
@@ -211,7 +242,8 @@ def run():
                  input_image, correct_label, keep_prob, learning_rate)
 
         # TODO: Save inference data using helper.save_inference_samples
-         helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image)
+        print('Saving inference samples')
+        helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image)
 
         # OPTIONAL: Apply the trained model to a video
 
