@@ -1,0 +1,87 @@
+(/opt/carnd_p3/behavioral) root@c0e01d737f0c:/home/workspace/CarND-Semantic-Segmentation# python main.py
+TensorFlow Version: 1.3.0
+2018-09-24 07:37:16.121487: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2018-09-24 07:37:16.121541: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2018-09-24 07:37:16.121560: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2018-09-24 07:37:16.216895: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:893] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-09-24 07:37:16.217256: I tensorflow/core/common_runtime/gpu/gpu_device.cc:955] Found device 0 with properties:
+name: Tesla K80
+major: 3 minor: 7 memoryClockRate (GHz) 0.8235
+pciBusID 0000:00:04.0
+Total memory: 11.17GiB
+Free memory: 11.09GiB
+2018-09-24 07:37:16.217319: I tensorflow/core/common_runtime/gpu/gpu_device.cc:976] DMA: 0
+2018-09-24 07:37:16.217345: I tensorflow/core/common_runtime/gpu/gpu_device.cc:986] 0:   Y
+2018-09-24 07:37:16.217396: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0)
+2018-09-24 07:37:16.457102: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0)
+Default GPU Device: /gpu:0
+2018-09-24 07:37:16.458602: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K8
+0, pci bus id: 0000:00:04.0)
+Tests Passed
+Tests Passed
+2018-09-24 07:37:22.057891: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0)
+Tests Passed
+2018-09-24 07:37:22.351646: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0)
+Tests Passed
+testing for kitti dataset
+Tests Passed
+maybe download pretrained vgg
+init run params
+2018-09-24 07:37:22.391322: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0)
+load_vgg()...
+layers()...
+optimize()...
+running epochs: 0
+epoch 0 execution took 116.39281999999999 sec, with training loss: 2.4846623218183286
+running epochs: 1
+epoch 1 execution took 113.71375500000002 sec, with training loss: 0.662556250408859
+running epochs: 2
+epoch 2 execution took 113.69460800000002 sec, with training loss: 0.5152951885259688
+running epochs: 3
+epoch 3 execution took 113.56758500000001 sec, with training loss: 0.27985860208842167
+running epochs: 4
+epoch 4 execution took 113.56497500000006 sec, with training loss: 0.20561523036870163
+running epochs: 5
+epoch 5 execution took 113.60896200000002 sec, with training loss: 0.17722177207727746
+running epochs: 6
+epoch 6 execution took 113.57812200000001 sec, with training loss: 0.15462507886302926
+running epochs: 7
+epoch 7 execution took 113.70044200000007 sec, with training loss: 0.14184293981035687
+running epochs: 8
+epoch 8 execution took 113.57184000000007 sec, with training loss: 0.12802047608581382
+running epochs: 9
+epoch 9 execution took 113.60855900000001 sec, with training loss: 0.12056383546635148
+running epochs: 10
+epoch 10 execution took 113.57098100000007 sec, with training loss: 0.1063837960207751
+running epochs: 11
+epoch 11 execution took 113.60661000000005 sec, with training loss: 0.09021410663132023
+running epochs: 12
+epoch 12 execution took 113.57835499999987 sec, with training loss: 0.08527643390799064
+running epochs: 13
+epoch 13 execution took 113.550614 sec, with training loss: 0.08371071427880068
+running epochs: 14
+epoch 14 execution took 113.50269000000003 sec, with training loss: 0.0678225111048733
+running epochs: 15
+epoch 15 execution took 113.35479799999985 sec, with training loss: 0.06011350724240282
+running epochs: 16
+epoch 16 execution took 113.47036400000002 sec, with training loss: 0.05488073912845557
+running epochs: 17
+epoch 17 execution took 113.62259399999994 sec, with training loss: 0.05327446535745294
+running epochs: 18
+epoch 18 execution took 113.54063599999972 sec, with training loss: 0.05669121779372535
+running epochs: 19
+epoch 19 execution took 113.68160399999988 sec, with training loss: 0.044856787923478546
+running epochs: 20
+epoch 20 execution took 113.87368500000002 sec, with training loss: 0.04157840806965081
+running epochs: 21
+epoch 21 execution took 113.76289399999996 sec, with training loss: 0.07119845241230871
+running epochs: 22
+epoch 22 execution took 113.80109700000003 sec, with training loss: 0.05318605574975789
+running epochs: 23
+epoch 23 execution took 113.73473899999999 sec, with training loss: 0.038975919455057816
+running epochs: 24
+epoch 24 execution took 113.77304200000026 sec, with training loss: 0.03577759637010758
+total execution took 2849.117804 seconds
+Saving inference samples
+Training Finished. Saving test images to: ./runs/1537778381.8111625
+(/opt/carnd_p3/behavioral) root@c0e01d737f0c:/home/workspace/CarND-Semantic-Segmentation#
